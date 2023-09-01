@@ -59,6 +59,10 @@ public abstract class Attraction {
         this.queue = queue;
     }
 
+    public int getUtilisation() {
+        return participants.size() * 100/totalCapacity;
+    }
+
     @Override
     public String toString() {
         return "Attraction{" +

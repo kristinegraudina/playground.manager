@@ -35,6 +35,8 @@ public class PlaygroundManagementServiceImpl implements PlaygroundManagement {
 
             switch (option) {
                 case 1:
+                    attractions.clear();
+                    playgroundVisitors.clear();
                     createEditPlayground(true);
                     break;
                 case 0:
@@ -59,9 +61,7 @@ public class PlaygroundManagementServiceImpl implements PlaygroundManagement {
                     System.out.println("4. Add Swing.");
                     System.out.println("5. Remove Attraction.");
                     System.out.println("6. Confirm.");
-                    if (cameFromStartMenu) {
-                        System.out.println("0. Start Over.");
-                    } else System.out.println("0. Back.");
+                    System.out.println("0. Back.");
 
                     option = scanner.nextInt();
                     validInput = true;
@@ -153,7 +153,7 @@ public class PlaygroundManagementServiceImpl implements PlaygroundManagement {
                     System.out.println("5: Remove visitor from queue.");
                     System.out.println("6. Add/Remove attraction.");
                     System.out.println("7. Show playground utilization/statistics.");
-                    System.out.println("0. Start Over.");
+                    System.out.println("0. Back.");
 
                     option = scanner.nextInt();
                     validInput = true;
@@ -186,9 +186,7 @@ public class PlaygroundManagementServiceImpl implements PlaygroundManagement {
                     showStatistics();
                     break;
                 case 0:
-                    attractions.clear();
-                    playgroundVisitors.clear();
-                    playgroundManagerInit();
+                    return;
                 default:
                     System.out.println("Alert: Invalid option.");
 
@@ -467,7 +465,7 @@ public class PlaygroundManagementServiceImpl implements PlaygroundManagement {
 
                     int i = 1;
                     for (Attraction attraction : attractions) {
-                        System.out.println((i++) + ". " + attraction.getName() + "[ " + ((attraction.getParticipants().size()) * 100 / attraction.getTotalCapacity()) + "% ]");
+                        System.out.println((i++) + ". " + attraction.getName() + "[ " + attraction.getUtilisation() + "% ]");
                     }
 
                     System.out.println(0 + ". Back");
